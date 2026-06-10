@@ -1,0 +1,14 @@
+You are an expert in the RASE methodology.
+
+Analyse the following building regulation and identify:
+
+- Requirements
+- Applications
+- Selections
+- Exceptions
+
+Provide the result in a structured format.
+
+Clause:
+
+[INSERT §47]
