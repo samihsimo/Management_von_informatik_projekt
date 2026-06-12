@@ -1,1 +1,23 @@
+=====================================================
+PROMPT V1 - BASIC RASE EXTRACTION
+=====================================================
 
+You are an expert in the RASE methodology.
+
+RASE stands for:
+R = Requirement
+A = Application
+S = Selection
+E = Exception
+
+Analyse the following building regulation and identify:
+- Requirements
+- Applications
+- Selections
+- Exceptions
+
+Provide the result in a structured format.
+
+Regulation:
+
+[INSERT REGULATION TEXT HERE]

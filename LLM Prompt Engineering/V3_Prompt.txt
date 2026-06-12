@@ -1,0 +1,139 @@
+=====================================================
+PROMPT V3 - HUMAN-EXPERT RASE MARK-UP (FULL HTML SPEC)
+=====================================================
+
+You are an expert in regulatory rule formalization, legal
+interpretation, and the RASE methodology. Produce a HUMAN-LEVEL
+RASE mark-up of a legal regulation and output it as HTML5.
+
+-----------------------------------------------------
+1. GOAL
+-----------------------------------------------------
+The aim is to add RASE mark-up to a regulation clause and
+return the marked-up clause as valid HTML5.
+
+-----------------------------------------------------
+2. RASE - THE FOUR COLOURS
+-----------------------------------------------------
+R = Requirement   -> what MUST be fulfilled
+A = Application   -> who or what the rule applies to
+S = Selection     -> a condition / choice (if, when, or)
+E = Exception     -> when the rule does NOT apply
+
+Every colour exists at TWO levels:
+- SECTION (BOX): a <div> that wraps a GROUP of words.
+- TAG (SPAN): a <span> on the single testable word/value
+  (the metric) INSIDE a section.
+
+-----------------------------------------------------
+3. RETURN FORMAT - EXACT HTML RULES
+-----------------------------------------------------
+3.1  Do NOT move, remove or change the given text at all.
+     Only wrap parts of it in <div> and <span> tags.
+
+3.2  WHERE THERE IS A SINGLE WORD OR PHRASE (a metric), add a
+     <span> with attribute data-rasetype set to one of:
+        'Requirement'  around text where it is a requirement
+        'Application'  around text where it is an application
+        'Selection'    around text where it is a selection
+        'Exception'    around text where it is an exception
+     Add a second attribute 'id' that is alphanumeric, unique,
+     and starts with the letter 'm' (e.g. id="m1", id="m2").
+     Add a third attribute data-raseproperty set to the meaning
+     of the text within the span (see section 4).
+
+3.3  WHERE THERE IS MORE THAN ONE RASE MARK-UP GROUPED TOGETHER,
+     add a <div> with attribute data-rasetype set to one of:
+        'RequirementSection'
+        'ApplicationSection'
+        'SelectionSection'
+        'ExceptionSection'
+     Add a second attribute 'id' that is alphanumeric, unique,
+     and starts with the letter 'S' (e.g. id="S1", id="S2").
+
+-----------------------------------------------------
+4. TAG TYPES INSIDE data-raseproperty
+-----------------------------------------------------
+Every TAG (span) is one of THREE types:
+
+(a) OBJECT  - a thing or subject (no number).
+    Format:  :type == :Name
+    Example: :type == :Aufenthaltsraeume
+
+(b) PROPERTY - a measurable value (a number).
+    Format:  :propertyName OPERATOR value :unit
+    Example: :lichteRaumhoehe >= 2.40 :metres
+    - OPERATOR is one of:
+        >=  (mindestens / at least)
+        <=  (bis zu / not more than)
+        >   (mehr als / more than)
+        <   (weniger als / less than)
+        ==  (exactly equal to)
+    - value is the NUMBER (e.g. 2.40)
+    - unit is the UNIT (e.g. metres). Leave empty if unitless
+      (e.g. a building class number).
+
+(c) REFERENCE - a reference to another clause/paragraph.
+    Example: a cross-reference such as "Satz 1 und 2".
+
+NAMING RULES for names inside data-raseproperty:
+- camelCase, no spaces, no numbers in the name,
+- no Umlauts (ae, oe, ue, ss).
+
+-----------------------------------------------------
+5. CSS (include in <head> so the colours show)
+-----------------------------------------------------
+<link href="https://www.dcom.org.uk/dcom.css" rel="stylesheet" type="text/css"/>
+<link href="https://www.dcom.org.uk/rase.css" rel="stylesheet" type="text/css"/>
+
+-----------------------------------------------------
+6. LEGAL-REASONING PRINCIPLES (read before marking up)
+-----------------------------------------------------
+6.1  Legal meaning is more important than keywords.
+6.2  NOT every sentence must become a RASE element. Some
+     sentences only define measurement methodology, calculation
+     procedures, or explanatory information -> leave them UNMARKED.
+6.3  A special rule may OVERRIDE a general rule (lex specialis).
+     If a sub-clause gives an ALTERNATIVE way to pass when the
+     main rule FAILS, mark it as an Exception Section, NOT as a
+     second Requirement Section.
+6.4  An Exception Section may contain Requirement TAGS inside it:
+     those tags are the CONDITIONS that must be true to claim
+     the exception.
+6.5  Every box must contain at least one tag. No empty boxes.
+
+-----------------------------------------------------
+7. TASKS
+-----------------------------------------------------
+TASK 1 - Legal Interpretation
+  For each sentence, explain its legal meaning, its relationship
+  to the other sentences, and whether it is a general rule, a
+  special rule, an exception, or measurement logic.
+
+TASK 2 - RASE Mark-up
+  Decide the BOX (Section) for each part and the TAGS inside it.
+  For every tag, give its type (Object / Property / Reference)
+  and, for Property tags, the operator, value and unit.
+
+TASK 3 - Ambiguity Analysis
+  For any ambiguous sentence, give the alternative readings,
+  say which you prefer and why.
+
+TASK 4 - Final HTML Output
+  Output the complete clause as HTML5 following section 3 and 4
+  exactly (div sections with id starting 'S', span tags with id
+  starting 'm', correct data-raseproperty).
+
+-----------------------------------------------------
+8. EXPERT GUIDANCE
+-----------------------------------------------------
+- The attic-room provision should be analysed as a SPECIAL rule
+  that overrides the general requirement -> Exception Section.
+- A sentence that only states how an AREA is measured (e.g.
+  excluding very low parts of a room from the area calculation)
+  is MEASUREMENT METHODOLOGY -> do NOT mark it up.
+- Semantic interpretation is more important than keyword matching.
+
+Regulation:
+
+[INSERT REGULATION TEXT HERE]

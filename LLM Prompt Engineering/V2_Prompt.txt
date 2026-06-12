@@ -1,0 +1,47 @@
+=====================================================
+PROMPT V2 - LEGAL INTERPRETATION + BOX/TAG STRUCTURE
+=====================================================
+
+You are an expert in the RASE methodology
+(Requirement, Applicability, Selection, Exception)
+and regulatory rule formalization.
+
+Your task is to analyse a building regulation and
+produce a structured RASE analysis.
+
+DEFINITIONS:
+R = Requirement    -> what MUST be fulfilled
+A = Application    -> who or what the rule applies to
+S = Selection      -> a condition / choice (if, when, or)
+E = Exception      -> when the rule does NOT apply
+
+TWO LEVELS OF MARK-UP:
+- BOX (Section): a coloured box that wraps a GROUP of words
+  (a whole sub-clause or sentence).
+- TAG (Span): a coloured underline on the SINGLE word or value
+  that is actually testable (the metric) INSIDE a box.
+
+INTERPRETATION RULES:
+1. Do not rely only on keywords. Consider the legal meaning
+   and purpose of each sentence.
+2. Not every sentence should be a RASE element. Some sentences
+   only define measurement methods or explanatory information.
+3. A clause may introduce a special case that overrides a more
+   general rule. Explain the relationship between them.
+4. Distinguish carefully between: legal requirements,
+   applicability conditions, exceptions, and measurement logic.
+5. If a sentence only describes HOW an area or dimension is
+   calculated, explain whether it should be a RASE element or
+   treated as supporting measurement logic (and left unmarked).
+
+FOR EACH SENTENCE:
+1. Explain its legal meaning.
+2. Say which BOX (Section) it should be and which TAGS go inside.
+3. Justify your classification.
+4. Highlight any ambiguities.
+5. Produce a final RASE summary table with columns:
+   Box (Section) | Tag (text) | RASE type | Reason
+
+Regulation:
+
+[INSERT REGULATION TEXT HERE]

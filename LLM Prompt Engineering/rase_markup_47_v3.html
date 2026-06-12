@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASE Mark-Up — §47 Aufenthaltsräume (V3 Prompt Output)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f7f7f7; color: #111;
+    padding: 40px 20px 80px; line-height: 1.9;
+  }
+  .page { max-width: 880px; margin: 0 auto; }
+
+  h1 { text-align:center; font-size:1.25rem; margin-bottom:4px; }
+  .subtitle { text-align:center; font-size:0.75rem; color:#666;
+              margin-bottom:24px; font-family:Arial,sans-serif; }
+
+  .info-banner {
+    background:#eef3fb; border-left:4px solid #5b8dd9; border-radius:4px;
+    padding:12px 16px; font-size:0.8rem; color:#1e3a6e; margin-bottom:24px;
+    line-height:1.6; font-family:Arial,sans-serif;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display:flex; flex-wrap:wrap; gap:9px 24px;
+    margin-bottom:24px; padding:12px 16px;
+    background:#fff; border:1px solid #ddd; border-radius:6px;
+    font-size:0.77rem; font-family:Arial,sans-serif;
+  }
+  .legend-item { display:flex; align-items:center; gap:7px; }
+  .sw { display:inline-block; width:26px; height:13px;
+        border-radius:3px; border:1px solid rgba(0,0,0,.12); }
+
+  /* ══════════════════════════════════════════════
+     RASE STYLES — driven by data-rasetype attribute
+     (teacher's exact attribute names)
+  ══════════════════════════════════════════════ */
+
+  /* SECTIONS (div boxes) */
+  div[data-rasetype="RequirementSection"] {
+    border:2px solid #1565C0; background:#E3F2FD;
+    border-radius:5px; padding:10px 14px; margin:8px 0;
+  }
+  div[data-rasetype="ApplicationSection"] {
+    border:2px solid #2e7d32; background:#E8F5E9;
+    border-radius:5px; padding:10px 14px; margin:8px 0;
+  }
+  div[data-rasetype="SelectionSection"] {
+    border:2px solid #8e24aa; background:#F3E5F5;
+    border-radius:5px; padding:10px 14px; margin:8px 0;
+  }
+  div[data-rasetype="ExceptionSection"] {
+    border:2px solid #e67e22; background:#FFF3E0;
+    border-radius:5px; padding:10px 14px; margin:8px 0;
+  }
+
+  /* TAGS (span metrics) */
+  span[data-rasetype="Requirement"] {
+    text-decoration:underline; text-decoration-color:#1565C0;
+    text-decoration-thickness:2.5px; text-underline-offset:3px;
+    color:#0d47a1; font-weight:bold;
+  }
+  span[data-rasetype="Application"] {
+    text-decoration:underline; text-decoration-color:#2e7d32;
+    text-decoration-thickness:2.5px; text-underline-offset:3px;
+    color:#1b5e20; font-weight:bold;
+  }
+  span[data-rasetype="Selection"] {
+    text-decoration:underline; text-decoration-color:#8e24aa;
+    text-decoration-thickness:2.5px; text-underline-offset:3px;
+    color:#6a1b9a; font-weight:bold;
+  }
+  span[data-rasetype="Exception"] {
+    text-decoration:underline; text-decoration-color:#e67e22;
+    text-decoration-thickness:2.5px; text-underline-offset:3px;
+    color:#bf5d00; font-weight:bold;
+  }
+
+  /* section label */
+  .sec-label {
+    display:inline-block; font-size:0.62rem; font-weight:bold;
+    letter-spacing:.06em; padding:1px 6px; border-radius:3px;
+    font-family:'Courier New',monospace; text-transform:uppercase;
+    margin-bottom:5px;
+  }
+  .lab-R { background:#BBDEFB; color:#0d47a1; }
+  .lab-E { background:#FFE0B2; color:#bf5d00; }
+
+  /* tooltip on hover */
+  [data-raseproperty] { cursor:help; position:relative; }
+  [data-raseproperty]:hover::after {
+    content:attr(data-raseproperty);
+    position:absolute; left:0; top:130%;
+    background:#222; color:#fff; font-size:0.7rem;
+    padding:4px 9px; border-radius:4px; white-space:nowrap;
+    z-index:100; font-weight:normal; font-family:'Courier New',monospace;
+  }
+
+  .clause-title { font-weight:bold; font-size:1.05rem; margin:6px 0 14px; }
+  .satz-num { font-weight:bold; color:#555;
+              font-family:'Courier New',monospace; font-size:0.8rem; }
+
+  /* unmarked measurement note */
+  .measure-note {
+    margin:8px 0; padding:10px 14px;
+    background:#f3f3f3; border-left:3px solid #999;
+    font-size:0.82rem; color:#444; font-family:Arial,sans-serif;
+    line-height:1.55;
+  }
+
+  .divider { border:none; border-top:1px solid #ccc; margin:30px 0 20px; }
+  .sec { font-size:1rem; font-weight:bold; margin-bottom:11px;
+         border-bottom:2px solid #222; padding-bottom:4px;
+         font-family:Arial,sans-serif; }
+
+  table { width:100%; border-collapse:collapse; font-size:0.78rem;
+          font-family:Arial,sans-serif; }
+  th { background:#efefef; border:1px solid #ccc; padding:7px 10px; text-align:left; }
+  td { border:1px solid #ddd; padding:7px 10px; vertical-align:top; line-height:1.5; }
+  tr:nth-child(even) td { background:#fafafa; }
+  code { font-family:'Courier New',monospace; font-size:0.74rem; color:#1a1a1a; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>RASE Mark-Up — §47 Aufenthaltsräume</h1>
+  <p class="subtitle">AI Output (V3 Prompt) &middot; Teacher HTML specification &middot; Task 2 &middot; 2026</p>
+
+  <div class="info-banner">
+    This file follows the supervisor's exact HTML rules: every metric is a
+    <code>&lt;span&gt;</code> with <code>data-rasetype</code>, a unique <code>id</code> starting with
+    <strong>m</strong>, and a <code>data-raseproperty</code>; every group is a
+    <code>&lt;div&gt;</code> with <code>data-rasetype</code> ending in <em>Section</em> and an
+    <code>id</code> starting with <strong>S</strong>. Hover any underlined metric to see its
+    <code>data-raseproperty</code>.
+  </div>
+
+  <!-- ── Legend ── -->
+  <div class="legend">
+    <div class="legend-item"><span class="sw" style="background:#E3F2FD;border-color:#1565C0;"></span><span><strong>R</strong> – Requirement</span></div>
+    <div class="legend-item"><span class="sw" style="background:#E8F5E9;border-color:#2e7d32;"></span><span><strong>A</strong> – Application</span></div>
+    <div class="legend-item"><span class="sw" style="background:#F3E5F5;border-color:#8e24aa;"></span><span><strong>S</strong> – Selection</span></div>
+    <div class="legend-item"><span class="sw" style="background:#FFF3E0;border-color:#e67e22;"></span><span><strong>E</strong> – Exception</span></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       THE MARKED-UP CLAUSE
+       (Requirement Section containing
+        one R-Section + two E-Sections)
+  ══════════════════════════════════════════ -->
+
+  <p class="clause-title">§ 47 Aufenthaltsräume</p>
+
+  <!-- Overall Requirement Section S0 wraps the whole clause -->
+  <div data-rasetype="RequirementSection" id="S0">
+
+    <!-- ── SATZ 1 — general requirement ── -->
+    <div data-rasetype="RequirementSection" id="S1">
+      <span class="sec-label lab-R">S1 · Requirement</span><br>
+      <span class="satz-num">(1) 1</span>
+      <span data-rasetype="Application" id="m1" data-raseproperty=":type == :Aufenthaltsraeume">Aufenthaltsräume</span>
+      müssen eine lichte Raumhöhe von
+      <span data-rasetype="Requirement" id="m2" data-raseproperty=":lichteRaumhoehe &gt;= 2.40 :metres">mindestens 2,40&nbsp;m</span>
+      haben.
+    </div>
+
+    <!-- ── SATZ 2 — attic: EXCEPTION (lex specialis) ── -->
+    <div data-rasetype="ExceptionSection" id="S2">
+      <span class="sec-label lab-E">S2 · Exception (attic / lex specialis)</span><br>
+      <span class="satz-num">2</span>
+      <span data-rasetype="Application" id="m3" data-raseproperty=":type == :Aufenthaltsraeume">Aufenthaltsräume</span>
+      <span data-rasetype="Application" id="m4" data-raseproperty=":type == :imDachraum">im Dachraum</span>
+      müssen eine lichte Raumhöhe von
+      <span data-rasetype="Requirement" id="m5" data-raseproperty=":lichteRaumhoeheDachraum &gt;= 2.20 :metres">mindestens 2,20&nbsp;m</span>
+      über
+      <span data-rasetype="Requirement" id="m6" data-raseproperty=":NettoRaumflaeche &gt;= 0.5 :metres">mindestens der Hälfte ihrer Netto-Raumfläche</span>
+      haben;
+      Raumteile mit einer lichten Raumhöhe bis zu 1,50&nbsp;m bleiben außer Betracht.
+    </div>
+
+    <!-- ── Measurement note (NOT marked up) ── -->
+    <div class="measure-note">
+      ⚠ <strong>Not marked up:</strong> "Raumteile mit einer lichten Raumhöhe bis zu 1,50&nbsp;m
+      bleiben außer Betracht." This sentence only defines how the net floor area is measured
+      (it removes very low parts from the area calculation). It is measurement methodology,
+      not a requirement, so it receives no RASE tag.
+    </div>
+
+    <!-- ── SATZ 3 — building-class EXCEPTION ── -->
+    <div data-rasetype="ExceptionSection" id="S3">
+      <span class="sec-label lab-E">S3 · Exception (Gebäudeklassen 1 &amp; 2)</span><br>
+      <span class="satz-num">3</span>
+      Die Sätze 1 und 2 gelten nicht für Aufenthaltsräume in
+      <span data-rasetype="Requirement" id="m7" data-raseproperty=":type == :Wohngebaeude">Wohngebäuden</span>
+      der
+      <span data-rasetype="Requirement" id="m8" data-raseproperty=":Gebaeudeklasse &lt;= 2">Gebäudeklassen 1 und 2</span>.
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SUMMARY TABLE (Box / Tag / type)
+  ══════════════════════════════════════════ -->
+  <hr class="divider">
+  <div class="sec">RASE Summary — Boxes, Tags and Types</div>
+  <table>
+    <thead>
+      <tr><th>Box (id)</th><th>Tag (id)</th><th>Text</th><th>RASE type</th><th>Tag type</th><th>data-raseproperty</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S0 · RequirementSection</td><td>—</td><td>(whole clause)</td><td>Requirement</td><td>container</td><td>—</td></tr>
+      <tr><td rowspan="2">S1 · RequirementSection</td><td>m1</td><td>Aufenthaltsräume</td><td>Application</td><td>Object</td><td><code>:type == :Aufenthaltsraeume</code></td></tr>
+      <tr><td>m2</td><td>mindestens 2,40 m</td><td>Requirement</td><td>Property</td><td><code>:lichteRaumhoehe &gt;= 2.40 :metres</code></td></tr>
+      <tr><td rowspan="4">S2 · ExceptionSection</td><td>m3</td><td>Aufenthaltsräume</td><td>Application</td><td>Object</td><td><code>:type == :Aufenthaltsraeume</code></td></tr>
+      <tr><td>m4</td><td>im Dachraum</td><td>Application</td><td>Object</td><td><code>:type == :imDachraum</code></td></tr>
+      <tr><td>m5</td><td>mindestens 2,20 m</td><td>Requirement</td><td>Property</td><td><code>:lichteRaumhoeheDachraum &gt;= 2.20 :metres</code></td></tr>
+      <tr><td>m6</td><td>mindestens der Hälfte der Netto-Raumfläche</td><td>Requirement</td><td>Property</td><td><code>:NettoRaumflaeche &gt;= 0.5 :metres</code></td></tr>
+      <tr><td>— (no box)</td><td>—</td><td>Raumteile bis 1,50 m</td><td>— none</td><td>measurement</td><td>not marked up</td></tr>
+      <tr><td rowspan="2">S3 · ExceptionSection</td><td>m7</td><td>Wohngebäuden</td><td>Requirement</td><td>Object</td><td><code>:type == :Wohngebaeude</code></td></tr>
+      <tr><td>m8</td><td>Gebäudeklassen 1 und 2</td><td>Requirement</td><td>Property</td><td><code>:Gebaeudeklasse &lt;= 2</code></td></tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>
