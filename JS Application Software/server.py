@@ -9,9 +9,9 @@ class RASEHandler(SimpleHTTPRequestHandler):
             self.send_response(404); self.end_headers(); self.wfile.write(b'Not found'); return
         try:
             length=int(self.headers.get('Content-Length',0)); body=self.rfile.read(length).decode('utf-8')
-            payload=json.loads(body); text=payload.get('text',''); mode=payload.get('mode','mock')
+            payload=json.loads(body); text=payload.get('text',''); mode=payload.get('mode','mock'); prompt_version=payload.get('prompt_version','v3')
             if not text.strip(): raise ValueError('No text provided.')
-            response=json.dumps(extract(text,mode),ensure_ascii=False).encode('utf-8')
+            response=json.dumps(extract(text,mode,prompt_version),ensure_ascii=False).encode('utf-8')
             self.send_response(200); self.send_header('Content-Type','application/json; charset=utf-8'); self.send_header('Content-Length',str(len(response))); self.end_headers(); self.wfile.write(response)
         except Exception as e:
             response=json.dumps({'error':str(e)},ensure_ascii=False).encode('utf-8')

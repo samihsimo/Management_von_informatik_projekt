@@ -1,1 +1,123 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>RASE Task 3 Tool</title><link rel="stylesheet" href="styles.css"/></head><body><header class="hero"><p class="eyebrow">Task 3 · Proof of Concept</p><h1>RASE Rule Formalization Tool</h1><p class="subtitle">Extract RASE elements, compare them with the human reference, and visualize the legal logic.</p></header><main class="container"><section class="panel"><div class="panel-header"><h2>1. Input Regulation</h2><button id="loadExampleBtn" class="secondary">Load §47 Example</button></div><textarea id="inputText" placeholder="Paste regulation text here..."></textarea><div class="actions"><label>Mode: <select id="modeSelect"><option value="mock">Mock Mode (offline)</option><option value="live">Live Mode Placeholder</option></select></label><button id="analyzeBtn">Analyze RASE</button></div></section><section class="kpis"><div class="kpi"><span id="rulesCount">0</span><p>Rules Extracted</p></div><div class="kpi"><span id="confidenceScore">0%</span><p>AI Confidence</p></div><div class="kpi"><span id="similarityScore">0%</span><p>Human Match</p></div></section><section class="panel"><h2>2. RASE Results</h2><div class="filters"><button class="chip active" data-filter="All">All</button><button class="chip" data-filter="Requirement">Requirements</button><button class="chip" data-filter="Applicability">Applicability</button><button class="chip" data-filter="Selection">Selections</button><button class="chip" data-filter="Exception">Exceptions</button><button class="chip" data-filter="MeasurementLogic">Measurement Logic</button></div><div id="resultsGrid" class="results-grid empty"><p>No results yet. Paste a clause and click Analyze.</p></div></section><section class="panel split"><div><h2>3. Human vs AI Comparison</h2><table><thead><tr><th>Feature</th><th>Human Reference</th><th>AI Output</th><th>Match</th></tr></thead><tbody id="comparisonBody"></tbody></table></div><div><h2>4. Legal Logic Tree</h2><pre class="logic-tree" id="logicTree">Run the analysis to generate the logic tree.</pre></div></section><section class="panel"><h2>5. Prompt Evolution Viewer</h2><div class="prompt-cards"><div class="prompt-card"><h3>Prompt V1</h3><p>Basic extraction.</p><strong>~85–90%</strong></div><div class="prompt-card"><h3>Prompt V2</h3><p>Legal reasoning + ambiguity analysis.</p><strong>~92–95%</strong></div><div class="prompt-card"><h3>Prompt V3</h3><p>Human-expert guidance + measurement logic.</p><strong>~98–99%</strong></div></div></section><section class="panel"><details><summary>Raw JSON Output</summary><pre id="rawJson">{}</pre></details></section></main><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RASE Task 3 Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">Task 3333333 · Proof of Concept</p>
+  <h1>RASE Rule Formalization Tool</h1>
+  <p class="subtitle">
+    Extract RASE elements, compare them with the human reference,
+    and visualize the legal logic.
+  </p>
+</header>
+
+<main class="container">
+
+  <!-- 1. Input -->
+  <section class="panel">
+    <div class="panel-header">
+      <h2>1. Input Regulation</h2>
+      <button id="loadExampleBtn" class="secondary">Load §47 Example</button>
+    </div>
+    <textarea id="inputText" placeholder="Paste regulation text here..."></textarea>
+    <div class="actions">
+      <label>
+        Mode:
+        <select id="modeSelect">
+          <option value="mock">Mock Mode (offline)</option>
+          <option value="gemini">Gemini Mode (API)</option>
+        </select>
+      </label>
+      <label id="promptVersionLabel" style="display:none;">
+        Prompt:
+        <select id="promptVersionSelect">
+          <option value="v3">V3 — Expert (recommended)</option>
+          <option value="v2">V2 — Structured</option>
+          <option value="v1">V1 — Basic</option>
+        </select>
+      </label>
+      <button id="analyzeBtn">Analyze RASE</button>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="kpis">
+    <div class="kpi"><span id="rulesCount">0</span><p>Rules Extracted</p></div>
+    <div class="kpi"><span id="confidenceScore">0%</span><p>AI Confidence</p></div>
+    <div class="kpi"><span id="similarityScore">0%</span><p>Human Match</p></div>
+  </section>
+
+  <!-- 2. Results -->
+  <section class="panel">
+    <h2>2. RASE Results</h2>
+    <div class="filters">
+      <button class="chip active" data-filter="All">All</button>
+      <button class="chip" data-filter="Requirement">Requirements</button>
+      <button class="chip" data-filter="Applicability">Applicability</button>
+      <button class="chip" data-filter="Selection">Selections</button>
+      <button class="chip" data-filter="Exception">Exceptions</button>
+      <button class="chip" data-filter="MeasurementLogic">Measurement Logic</button>
+    </div>
+    <div id="resultsGrid" class="results-grid empty">
+      <p>No results yet. Paste a clause and click Analyze.</p>
+    </div>
+  </section>
+
+  <!-- 3 & 4. Comparison + Logic Tree -->
+  <section class="panel split">
+    <div>
+      <h2>3. Human vs AI Comparison</h2>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Human Reference</th><th>AI Output</th><th>Match</th></tr>
+        </thead>
+        <tbody id="comparisonBody"></tbody>
+      </table>
+    </div>
+    <div>
+      <h2>4. Legal Logic Tree</h2>
+      <pre class="logic-tree" id="logicTree">Run the analysis to generate the logic tree.</pre>
+    </div>
+  </section>
+
+  <!-- 5. Prompt Evolution -->
+  <section class="panel">
+    <h2>5. Prompt Evolution Viewer</h2>
+    <div class="prompt-cards">
+      <div class="prompt-card">
+        <h3>Prompt V1</h3>
+        <p>Basic extraction — minimal instructions.</p>
+        <strong>~85–90%</strong>
+      </div>
+      <div class="prompt-card">
+        <h3>Prompt V2</h3>
+        <p>Structured schema + RASE type guide.</p>
+        <strong>~92–95%</strong>
+      </div>
+      <div class="prompt-card">
+        <h3>Prompt V3</h3>
+        <p>Expert guidance + measurement logic + field rules.</p>
+        <strong>~98–99%</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Raw JSON -->
+  <section class="panel">
+    <details>
+      <summary>Raw JSON Output</summary>
+      <pre id="rawJson">{}</pre>
+    </details>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
