@@ -9,23 +9,23 @@
 <body>
 
 <header class="hero">
-  <p class="eyebrow">Task 3333333 · Proof of Concept</p>
+  <p class="eyebrow">Task 3 · Proof of Concept</p>
   <h1>RASE Rule Formalization Tool</h1>
   <p class="subtitle">
-    Extract RASE elements, compare them with the human reference,
-    and visualize the legal logic.
+    Extract RASE elements, benchmark prompt quality, visualize confidence,
+    and explore legal logic as an interactive graph.
   </p>
 </header>
 
 <main class="container">
 
-  <!-- 1. Input -->
+  <!-- ① Input -->
   <section class="panel">
     <div class="panel-header">
       <h2>1. Input Regulation</h2>
       <button id="loadExampleBtn" class="secondary">Load §47 Example</button>
     </div>
-    <textarea id="inputText" placeholder="Paste regulation text here..."></textarea>
+    <textarea id="inputText" placeholder="Paste regulation text here…"></textarea>
     <div class="actions">
       <label>
         Mode:
@@ -43,17 +43,27 @@
         </select>
       </label>
       <button id="analyzeBtn">Analyze RASE</button>
+      <button id="compareBtn" class="secondary">Compare Prompts</button>
     </div>
   </section>
 
   <!-- KPIs -->
   <section class="kpis">
-    <div class="kpi"><span id="rulesCount">0</span><p>Rules Extracted</p></div>
-    <div class="kpi"><span id="confidenceScore">0%</span><p>AI Confidence</p></div>
-    <div class="kpi"><span id="similarityScore">0%</span><p>Human Match</p></div>
+    <div class="kpi">
+      <span id="rulesCount">0</span>
+      <p>Rules Extracted</p>
+    </div>
+    <div class="kpi">
+      <span id="confidenceScore">0%</span>
+      <p>AI Confidence</p>
+    </div>
+    <div class="kpi">
+      <span id="similarityScore">0%</span>
+      <p>Human Match</p>
+    </div>
   </section>
 
-  <!-- 2. Results -->
+  <!-- ② RASE Results -->
   <section class="panel">
     <h2>2. RASE Results</h2>
     <div class="filters">
@@ -69,26 +79,81 @@
     </div>
   </section>
 
-  <!-- 3 & 4. Comparison + Logic Tree -->
-  <section class="panel split">
-    <div>
-      <h2>3. Human vs AI Comparison</h2>
-      <table>
-        <thead>
-          <tr><th>Feature</th><th>Human Reference</th><th>AI Output</th><th>Match</th></tr>
-        </thead>
-        <tbody id="comparisonBody"></tbody>
-      </table>
-    </div>
-    <div>
-      <h2>4. Legal Logic Tree</h2>
-      <pre class="logic-tree" id="logicTree">Run the analysis to generate the logic tree.</pre>
+  <!-- ③ Confidence Heatmap (Feature 2) -->
+  <section class="panel">
+    <h2>3. Confidence Heatmap</h2>
+    <p class="section-hint">Rules sorted by confidence — green ≥ 85 %, yellow ≥ 60 %, red &lt; 60 %.</p>
+    <div id="heatmapList">
+      <p class="empty-msg">Run analysis to see the confidence heatmap.</p>
     </div>
   </section>
 
-  <!-- 5. Prompt Evolution -->
+  <!-- ④ Prompt Benchmark Results (Feature 1) — hidden until benchmark runs -->
+  <section class="panel" id="benchmarkSection" style="display:none;">
+    <h2>4. Prompt Benchmark Results</h2>
+    <p class="section-hint">Gemini was called three times — once per prompt version.</p>
+    <table class="bench-table">
+      <thead>
+        <tr>
+          <th>Prompt</th>
+          <th>Rules Found</th>
+          <th>Avg Confidence</th>
+          <th>Human Similarity</th>
+        </tr>
+      </thead>
+      <tbody id="benchmarkBody"></tbody>
+    </table>
+  </section>
+
+  <!-- ⑤ Human vs Prompt Comparison (Feature 3) -->
   <section class="panel">
-    <h2>5. Prompt Evolution Viewer</h2>
+    <h2>5. Human vs Prompt Comparison</h2>
+    <p class="section-hint">
+      Human column = expert reference (always ✓).
+      V1 / V2 / V3 columns are filled after clicking <strong>Compare Prompts</strong>.
+    </p>
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="cmp-center">Human</th>
+          <th class="cmp-center">V1</th>
+          <th class="cmp-center">V2</th>
+          <th class="cmp-center">V3</th>
+        </tr>
+      </thead>
+      <tbody id="comparisonBody"></tbody>
+    </table>
+  </section>
+
+  <!-- ⑥ RASE Structure Graph (Feature 4) -->
+  <section class="panel">
+    <h2>
+      6. RASE Structure Graph
+      <span
+        class="info-icon"
+        aria-label="Graph information"
+        data-tooltip="Conceptual visualization of RASE elements. Future work could infer legal dependencies automatically from LLM outputs."
+      >ⓘ</span>
+    </h2>
+
+    <!-- Academic context box -->
+    <div class="graph-info-box">
+      This graph visualizes <strong>conceptual relationships</strong> between extracted RASE
+      elements. It is intended to illustrate the structure of the regulation and the interaction
+      between Applicability, Requirements, Measurement Logic, and Exceptions. The current
+      implementation does not automatically infer formal legal dependencies.
+    </div>
+
+    <p class="section-hint">Hover over a node to see its source text. Nodes are grouped by RASE type, flowing top-to-bottom.</p>
+    <div id="ruleGraph" class="graph-container">
+      <p class="empty-msg">Run analysis to generate the rule graph.</p>
+    </div>
+  </section>
+
+  <!-- ⑦ Prompt Evolution Viewer -->
+  <section class="panel">
+    <h2>7. Prompt Evolution Viewer</h2>
     <div class="prompt-cards">
       <div class="prompt-card">
         <h3>Prompt V1</h3>
@@ -108,7 +173,7 @@
     </div>
   </section>
 
-  <!-- 6. Raw JSON -->
+  <!-- ⑧ Raw JSON -->
   <section class="panel">
     <details>
       <summary>Raw JSON Output</summary>
