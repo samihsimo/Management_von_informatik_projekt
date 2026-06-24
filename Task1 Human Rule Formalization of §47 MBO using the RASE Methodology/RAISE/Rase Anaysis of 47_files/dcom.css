@@ -1,0 +1,140 @@
+
+.documentBody{
+  counter-set:section var(--section-start) paragraph 0;
+  background-color: white;
+  background-color: white;
+  color:black;
+  text-align:left;
+  font-family:"verdana";
+  font-size:15px;
+}
+
+p[title]:before {
+  content:attr(title);
+  font-weight: bold;
+  color: #3d763d;
+}
+
+section.bigtitle:before {
+  content:attr(title);
+  font-weight:bold;
+  font-size:large;
+}
+
+section[title]:before {
+  content:attr(title);
+  font-weight: bold;
+  color: #3d763d;
+}
+
+a {
+    color: #3d763d;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+span[title]:hover:after {
+ content: " ( "attr(title)" ) ";	
+}
+
+span[title] {
+ color:#3d763d;
+}
+
+[class="italic"] {
+  font-style: italic;
+  color: grey;
+}
+
+
+[class="bold"] {
+  font-weight: bold;
+}
+
+[class="non-normative-note"] {
+  color: grey;
+}
+
+mark {
+  background-color:#dfdfdf;
+}
+
+section {  
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  padding:0px;
+  margin-left: 5px;
+}
+
+div {  
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  padding:0px;
+  margin-left: 5px;
+}
+
+
+section.numbered:before {
+  counter-increment:section;
+  content:"Section " counter(section) ": " attr(title);
+  font-weight:bold;
+  font-size:x-large;
+  counter-set:paragraph var(--paragraph-start);
+}
+
+p.numbered:before {
+    counter-increment:paragraph;
+    content: counter(section) "." counter(paragraph) " ";
+    font-weight:bold;
+}
+
+p {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  padding:0px;
+  margin-left:5px
+}
+
+
+p.production {
+  border: 0px !important;
+}
+
+section.production {
+  border: 0px !important;
+}
+
+table, th, td {
+  border: 1px solid black;
+  font-weight: normal;
+}
+
+dl {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0
+}
+dt {
+  float: left;
+  width: 20%;
+  padding: 0;
+  margin: 0
+}
+dd {
+  float: left;
+  width: 80%;
+  padding: 0;
+  margin: 0
+}

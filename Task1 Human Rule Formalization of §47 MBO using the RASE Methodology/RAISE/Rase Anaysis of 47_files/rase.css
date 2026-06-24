@@ -1,0 +1,194 @@
+body {
+  text-align:left;
+  font-family:"verdana";
+  font-size:15px;
+  margin-right:24px;
+}
+
+table, td {
+  border-style:solid;
+  border-width:2px;
+  border-color:gray;
+}
+
+th {
+  border-style:solid;
+  border-width:2px;
+  border-color:gray;
+  background-color:#bfbfbf;
+  text-align:left;
+  font-family:"verdana";
+  font-weight:bolder;
+}
+
+.dotList {
+  list-style: disc outside;
+}
+.alphaList {
+  list-style-type: lower-alpha;
+}
+.bs_link {
+	color: #ea3ff7;
+	text-decoration: underline;
+}
+.ds_sequential-nav__text {
+	color: #ea3ff7;
+	text-decoration: underline;
+}
+.ds_side-navigation__link {
+	color: #ea3ff7;
+	text-decoration: underline;
+}
+a {
+	color: #ea3ff7;
+	text-decoration: underline;
+}
+
+[data-raseType="RequirementSection"] {
+  background-color:#dfdfdf;
+  border-top: 2px solid #696ff6;
+  border-bottom: 2px solid #696ff6;
+  border-left: 2px solid #696ff6;
+  border-right: 2px solid #696ff6;
+  padding:0px;
+  	margin-top:1px;
+  	margin-bottom:1px;
+  	margin-right:1px;
+  	margin-left:24px;
+  text-align:left;
+  text-indent:5px;
+  direction:ltr;
+/*   display:block; */
+}
+
+[data-raseType="ApplicationSection"] {
+  background-color:#77dd77;
+  border-top: 2px dashed #00aa00;
+  border-bottom: 2px dashed #00aa00;
+  border-left: 2px dashed #00aa00;
+  border-right: 2px dashed #00aa00;
+  padding:0px;
+  	margin-top:1px;
+  	margin-bottom:1px;
+  	margin-right:1px;
+  	margin-left:24px;
+  text-align:left;
+  text-indent:5px;
+  direction:ltr;
+  /* display:block; */
+}
+
+[data-raseType="SelectionSection"] {
+  background-color:#ff99ff;
+  border-top: 2px dotted #550055;
+  border-bottom: 2px dotted #550055;
+  border-left: 2px dotted #550055;
+  border-right: 2px dotted #550055;
+  padding:0px;
+  	margin-top:1px;
+  	margin-bottom:1px;
+  	margin-right:1px;
+  	margin-left:24px;
+  text-align:left;
+  text-indent:5px;
+  direction:ltr;
+  /* display:block; */
+}
+
+[data-raseType="ExceptionSection"] {
+  background-color:#fdfd82;
+  border-top: 2px double #da8d02;
+  border-bottom: 2px double #da8d02;
+  border-left: 2px double #da8d02;
+  border-right: 2px double #da8d02;
+  padding:0px;
+  	margin-top:1px;
+  	margin-bottom:1px;
+  	margin-right:1px;
+  	margin-left:24px;
+  text-align:left;
+  text-indent:5px;
+  direction:ltr;
+/*   display:block;*/
+}
+
+[data-raseType="Requirement"] {
+  color:#252dd2;
+  text-decoration: underline;
+  text-align:left;
+  text-indent:0px;
+  direction:ltr;
+}
+
+[data-raseType="Application"] {
+  color:#00aa00;
+  text-decoration:underline;
+  text-decoration-style:dashed;
+  text-align:left;
+  text-indent:0px;
+  direction:ltr;
+}
+
+[data-raseType="Selection"] {
+  color:#550055;
+  text-decoration:underline;
+  text-decoration-style:dotted;
+  text-align:left;
+  text-indent:0px;
+  direction:ltr;
+}
+
+[data-raseType="Exception"] {
+  color:#da8d02;
+  text-decoration:underline;
+  text-decoration-style:double;
+  text-align:left;
+  text-indent:0px;
+  direction:ltr;
+}
+
+[data-raseType="RequirementSection"]:after, [data-raseType="ApplicationSection"]:after, [data-raseType="SelectionSection"]:after, [data-raseType="ExceptionSection"]:after {
+  content: " "attr(id)" ";
+  margin-right:2px;
+  padding:1px;
+  display:none;
+  position:relative;
+  float:right;
+  bottom:0%;
+  right:0%;
+  min-width:70px;
+  text-align:left;
+  font-family:"verdana";
+  font-size:9px;
+  font-weight:bold;
+  background-color:#ffffff;
+  border-radius:2px;
+  border:2px solid#000000;
+  border-color:lightgray black black lightgray;
+}
+
+[data-raseType="RequirementSection"]:hover:after, [data-raseType="ApplicationSection"]:hover:after, [data-raseType="SelectionSection"]:hover:after, [data-raseType="ExceptionSection"]:hover:after {
+  display:block;
+}
+
+[data-raseType="Requirement"]:after, [data-raseType="Application"]:after, [data-raseType="Selection"]:after, [data-raseType="Exception"]:after {
+  padding:1px;
+  display:none;
+  position:absolute;
+  text-align:left;
+  font-family:"verdana";
+  font-size:10px;
+  font-weight:bold;
+  background-color:#ffffff;
+  border-radius:2px;
+  border:1px solid#000000;
+}
+
+[data-raseType="Requirement"]:hover:after, [data-raseType="Application"]:hover:after, [data-raseType="Selection"]:hover:after, [data-raseType="Exception"]:hover:after {
+  display:inline;
+}
+
+[data-raseType="Requirement"]:after, [data-raseType="Application"]:after, [data-raseType="Selection"]:after, [data-raseType="Exception"]:after {
+  content: " "attr(id)" "attr(data-raseProperty)" "attr(data-raseComparator)" "attr(data-raseTarget)" "attr(data-raseUnit)" ";
+}
+
